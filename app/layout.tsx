@@ -11,6 +11,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import bgimage from "@/public/background.webp";
 import { UserProvider } from '@auth0/nextjs-auth0/client';
+import { getSession } from "@auth0/nextjs-auth0";
 
 export const metadata: Metadata = {
 	title: {
@@ -36,11 +37,13 @@ export const viewport = {
 	],
 }
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+	const session =await getSession();
+	let loggedIn = !!(session && session.user && session.user["name"]);
 	return (
 <UserProvider>
 			<div
@@ -58,7 +61,7 @@ export default function RootLayout({
 					<Image src={bgimage} alt="A light-colored marble pattern with dark veins." />
 				</div>
 					<div id="nav" className="relative z-10  flex flex-col h-screen">
-						<Navbar />
+						<Navbar loggedIn={loggedIn} />
 						
 
 						<main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow z-10">

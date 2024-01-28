@@ -7,25 +7,22 @@ export const siteConfig = {
 		{
 			label: "Home",
 			href: "/",
-			loggedIn: false,
 		},
 		{
 			label: "About Us",
 			href: "#about-card",
-			loggedIn: false,
 		},
 		{
 			label: "Where to Buy",
 			href: "#retailer-banner",
-			loggedIn: false,
 		},
 		{
-			label: "login",
+			label: "Login",
 			href: "/api/auth/login",
 			loggedIn: false,
 		},
 		{
-			label: "logout",
+			label: "Logout",
 			href: "/api/auth/logout",
 			loggedIn: true,
 		}
@@ -34,25 +31,22 @@ export const siteConfig = {
 		{
 			label: "Home",
 			href: "#",
-			loggedIn: false,
 		},
 		{
 			label: "About Us",
 			href: "#about-card",
-			loggedIn: false,
 		},
 		{
 			label: "Where to Buy",
 			href: "#retailer-banner",
-			loggedIn: false,
 		},
 		{
-			label: "login",
+			label: "Login",
 			href: "/api/auth/login",
 			loggedIn: false,
 		},
 		{
-			label: "logout",
+			label: "Logout",
 			href: "/api/auth/logout",
 			loggedIn: true,
 		}

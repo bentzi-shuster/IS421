@@ -19,7 +19,11 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import { SearchIcon } from "@/components/icons";
 import Logo from "@/public/Logo.webp";
 
-export const Navbar = () => {
+interface NavBarProps {
+	loggedIn: boolean;
+}
+
+export const Navbar = ({loggedIn}: NavBarProps) => {
 	
 	const searchInput = (
 		<Input
@@ -49,6 +53,7 @@ export const Navbar = () => {
 				</NavbarBrand>
 				<ul className="hidden lg:flex gap-4 justify-start ml-2">
 					{siteConfig.navItems.map((item) => (
+					(item.loggedIn === loggedIn || item.loggedIn === undefined) && (
 						<NavbarItem key={item.href}>
 							<NextLink
 								className={clsx(
@@ -60,7 +65,7 @@ export const Navbar = () => {
 							>
 								{item.label}
 							</NextLink>
-						</NavbarItem>
+						</NavbarItem>)
 					))}
 				</ul>
 			</NavbarContent>

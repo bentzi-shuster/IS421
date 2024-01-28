@@ -13,13 +13,13 @@ export default async function LandingPage() {
     console.log(loggedIn);
   
     return (
+        <>
+
+        {!loggedIn ? (
         <section className="relative flex flex-col items-center justify-center py-4 md:py-4 z-10">
             <div className="relative text-center">
                 <Hero />
             </div>
-           {loggedIn ? (
-
-   <>
             <div id="about-card" className="relative text-center mt-[7rem] mb-[3rem]">
                 <h1 aria-label="About Explorer" className='text-center'>About Explorer</h1>
             </div>
@@ -48,15 +48,27 @@ export default async function LandingPage() {
             <div className="relative flex w-[90%]">
                 <Reviews />
             </div> 
-            </>
-
-            ) :
-            (
-                <div>
-                    <h1> You need to be logged in to view this page</h1>
-                </div>
-            )
-            }
         </section>
+        ) : (<>
+            <h1>Logged in as {session?.user?.name}</h1>
+
+            <span className="text-sm max-w-md mx-auto text-center break-words">
+                {session?.accessToken}
+            </span>
+            <br />
+            <br />
+            <br />
+            <span>
+                {
+                    JSON.stringify(session?.user, null, 2)
+                }
+            </span>
+
+            </>
+        )}
+
+
+                </>
+
     );
 }
