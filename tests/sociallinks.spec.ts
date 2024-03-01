@@ -5,7 +5,6 @@
 // test('Socials Link Test', async ({ page }) => {
 //     await page.goto('https://thexplorer.vercel.app/');
 
-
 //     //Comment out two of the three tests and run on each link, one at a time.
 //     //instagram test
 //     const instaLink = page.locator('#instagram');
@@ -26,7 +25,6 @@
 
 //     await newPage.close();
 
-
 //     //twitter test
 //     const twitterLink = page.locator('#twitter');
 
@@ -37,7 +35,6 @@
 //     await expect(newPage).toHaveURL('https://www.twitter.com');
 
 //     await newPage.close();
-
 
 //     //tiktok test
 //     const tiktokLink = page.locator('#tiktok');

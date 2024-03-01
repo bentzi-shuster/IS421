@@ -9,7 +9,7 @@ test("Email Submit Form Test", async ({ page }) => {
   const emailToTest = generateRandomEmail();
 
   // Step 1: Navigate to the page with the email form
-  await page.goto("http://localhost:3000/");
+  await page.goto("/");
 
   // Step 2: Fill in the email address
   await page.fill('input[type="email"]', emailToTest); // Replace with your email input selector

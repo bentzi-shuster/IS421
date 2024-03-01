@@ -5,7 +5,7 @@ test("Button Functionality Test", async ({ page }) => {
   // await page.screenshot({ path: 'page-screenshot.png' });
 
   // Step 1: Navigate to the page with the button
-  await page.goto("http://localhost:3000/");
+  await page.goto("/");
 
   // Step 2: Locate the button
   // Replace 'button-selector' with the actual selector of the button
