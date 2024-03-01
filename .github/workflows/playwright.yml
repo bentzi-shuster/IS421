@@ -1,27 +1,43 @@
+#.github\workflows\playwright.yml - Playwright workflow file for GitHub Actions, main change is the use of secrets for the environment variables
 name: Playwright Tests
+env:
+  AUTH0_BASE_URL: ${{ secrets.AUTH0_BASE_URL }}
+  AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
+  AUTH0_CLIENT_SECRET: ${{ secrets.AUTH0_CLIENT_SECRET }}
+  AUTH0_ISSUER_BASE_URL: ${{ secrets.AUTH0_ISSUER_BASE_URL }}
+  AUTH0_SECRET: ${{ secrets.AUTH0_SECRET }}
+  # Storage State is defined to ensure that the worker creates a file containing the auth state in a temporary directory
+  STORAGE_STATE_PATH: ${{ secrets.STORAGE_STATE_PATH }}
+  TEST_UNAME: ${{ secrets.TEST_UNAME }}
+  TEST_PWD: ${{ secrets.TEST_PWD }}
+  AUTH0_SECRET_TEST: ${{ secrets.AUTH0_SECRET_TEST }}
+  AUTH0_CLIENT_ID_TEST: ${{ secrets.AUTH0_CLIENT_ID_TEST }}
+  AUTH0_CLIENT_SECRET_TEST: ${{ secrets.AUTH0_CLIENT_SECRET_TEST }}
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18
-    - name: Install dependencies
-      run: npm ci
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-    - name: Run Playwright tests
-      run: npx playwright test
-    - uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test
+      - name: Delete Secrets
+        run: rm -rf /home/runner/work/PlaywrightAuthExample/PlaywrightAuthExample/user.json
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30

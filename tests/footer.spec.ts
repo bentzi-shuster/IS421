@@ -1,30 +1,33 @@
-const { test, expect } = require('@playwright/test');
+const { test, expect } = require("@playwright/test");
 
-test('Component Links Test', async ({ page }) => {
-    // Step 1: Navigate to the page where the component exists
-    await page.goto('https://thexplorer.vercel.app/');
+test("Component Links Test", async ({ page }) => {
+  // Step 1: Navigate to the page where the component exists
+  await page.goto("http://localhost:3000/");
 
-    // Step 2: Select the component that contains the links
-    // Replace '.component-class' with the appropriate selector for your component
-    const component = await page.locator('.footer');
+  // Step 2: Select the component that contains the links
+  // Replace '.component-class' with the appropriate selector for your component
+  const component = await page.locator(".footer");
 
-    // Step 3: Find all links within the component
-    // This assumes that links are 'a' tags; adjust if necessary
-    const links = await component.locator('a');
+  // Step 3: Find all links within the component
+  // This assumes that links are 'a' tags; adjust if necessary
+  const links = await component.locator("a");
 
-    // Step 4: Iterate over each link and perform checks
-    const count = await links.count();
-    for (let i = 0; i < count; ++i) {
-        const link = links.nth(i);
-        const href = await link.getAttribute('href');
+  // Step 4: Iterate over each link and perform checks
+  const count = await links.count();
+  for (let i = 0; i < count; ++i) {
+    const link = links.nth(i);
+    const href = await link.getAttribute("href");
 
-        // Check if the href attribute exists
-        expect(href, `Link at index ${i} does not have an href attribute`).toBeDefined();
+    // Check if the href attribute exists
+    expect(
+      href,
+      `Link at index ${i} does not have an href attribute`
+    ).toBeDefined();
 
-        // Optionally, you can check if the link is valid or follows certain patterns
-        // Example: expect(href).toMatch(/https:\/\/expected-url-pattern/);
+    // Optionally, you can check if the link is valid or follows certain patterns
+    // Example: expect(href).toMatch(/https:\/\/expected-url-pattern/);
 
-        // Optional: Navigate to the link and check the response or page content
-        // Note: This might be outside the scope of a unit test for components and can be part of integration tests
-    }
+    // Optional: Navigate to the link and check the response or page content
+    // Note: This might be outside the scope of a unit test for components and can be part of integration tests
+  }
 });
