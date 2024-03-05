@@ -1,7 +1,8 @@
 const { test, expect } = require('@playwright/test');
+require("dotenv").config({ path: ".env.local" });
 
 test('Mailto Link Test', async ({ page }) => {
-    await page.goto('https://thexplorer.vercel.app/');
+    await page.goto('/');
 
     const mailtoLink = page.locator('#contact');
 

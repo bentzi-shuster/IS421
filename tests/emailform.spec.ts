@@ -1,4 +1,5 @@
 const { test, expect } = require('@playwright/test');
+require("dotenv").config({ path: ".env.local" });
 
 function generateRandomEmail(domain = 'gmail.com') {
     const randomString = Math.random().toString(36).substring(2, 15);
@@ -10,7 +11,7 @@ test('Email Submit Form Test', async ({ page }) => {
     const emailToTest = generateRandomEmail();
 
     // Step 1: Navigate to the page with the email form
-    await page.goto('https://thexplorer.vercel.app/');
+    await page.goto('/');
 
     // Step 2: Fill in the email address
     await page.fill('input[type="email"]', emailToTest); // Replace with your email input selector

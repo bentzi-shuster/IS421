@@ -1,8 +1,9 @@
 const { test, expect } = require('@playwright/test');
+require("dotenv").config({ path: ".env.local" });
 
 test('Component Links Test', async ({ page }) => {
     // Step 1: Navigate to the page where the component exists
-    await page.goto('https://thexplorer.vercel.app/');
+    await page.goto('/');
 
     // Step 2: Select the component that contains the links
     // Replace '.component-class' with the appropriate selector for your component

@@ -1,4 +1,5 @@
 const { test, expect } = require('@playwright/test');
+require("dotenv").config({ path: ".env.local" });
 
 test('Button Functionality Test', async ({ page }) => {
 
@@ -6,7 +7,7 @@ test('Button Functionality Test', async ({ page }) => {
     // await page.screenshot({ path: 'page-screenshot.png' });
 
     // Step 1: Navigate to the page with the button
-    await page.goto('https://thexplorer.vercel.app/');
+    await page.goto('/');
 
     // Step 2: Locate the button
     // Replace 'button-selector' with the actual selector of the button
