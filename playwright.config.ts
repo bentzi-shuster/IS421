@@ -29,7 +29,13 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    { name: "setup", testMatch: /.*\.setup\.ts/ },
+    {
+      name: "setup",
+      testMatch: /.*\.setup\.ts/,
+      use: {
+        ...devices["Desktop Firefox"],
+      },
+    },
     {
       name: "chromium",
       dependencies: ["setup"],
@@ -78,7 +84,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: "npm run build && npm run start", //the command to start the server, running npm run build && npm run start will start the server as well and may check for errors in building but it will take a lot
+    command: "npm run dev", //the command to start the server, running npm run build && npm run start will start the server as well and may check for errors in building but it will take a lot
     url: process.env.AUTH0_BASE_URL, //the url that playwright will use to access the server
     reuseExistingServer: !process.env.CI,
     env: {

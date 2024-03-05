@@ -7,9 +7,12 @@ let username: string = process.env.TEST_UNAME ?? ""; //if the TEST_UNAME environ
 let password: string = atob(process.env.TEST_PWD ?? "") || ""; //same as above, but also decode the base64 string
 
 const authFile = process.env.STORAGE_STATE_PATH; //where to save the authentication state
-
+setup.use({
+  storageState: authFile, //clear the storage state
+});
+//use the storage state to save the authentication state
 setup("authenticate", async ({ page }) => {
-  await page.goto(`http://localhost:3000/api/auth/login`);
+  await page.goto(`${process.env.AUTH0_BASE_URL}/api/auth/login`);
   await page.waitForURL(`${process.env.AUTH0_ISSUER_BASE_URL}/**`);
   await page.getByLabel("Email address").fill(username);
   await page.getByLabel("Password").fill(password);
