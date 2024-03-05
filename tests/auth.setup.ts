@@ -17,6 +17,6 @@ setup("authenticate", async ({ page }) => {
   await page.getByLabel("Email address").fill(username);
   await page.getByLabel("Password").fill(password);
   await page.getByRole("button", { name: "Continue", exact: true }).click();
-  await page.waitForURL(process.env.AUTH0_BASE_URL + ""); // the +"" is to make typescript shut up 💀
+  await page.waitForURL(process.env.AUTH0_BASE_URL + "/"); // the +"" is to make typescript shut up 💀
   await page.context().storageState({ path: authFile });
 });
